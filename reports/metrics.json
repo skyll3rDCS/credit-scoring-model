@@ -1,0 +1,72 @@
+{
+  "selected_model": "gradient_boosting",
+  "selection_metric": "cv_roc_auc",
+  "threshold": 0.5,
+  "test_size": 6000,
+  "positive_rate_test": 0.22116666666666668,
+  "cv_roc_auc": 0.7864127139505953,
+  "test_metrics": {
+    "roc_auc": 0.7823409859361391,
+    "precision": 0.66484268125855,
+    "recall": 0.36623963828183875,
+    "f1": 0.47230320699708456
+  },
+  "params": {
+    "family": "gradient_boosting",
+    "n_estimators": 100,
+    "learning_rate": 0.08,
+    "max_depth": 3,
+    "cv_folds": 3
+  },
+  "experiments": [
+    {
+      "name": "gradient_boosting",
+      "cv_roc_auc": 0.7864127139505953,
+      "roc_auc": 0.7823409859361391,
+      "precision": 0.66484268125855,
+      "recall": 0.36623963828183875,
+      "f1": 0.47230320699708456
+    },
+    {
+      "name": "hist_gradient_boosting",
+      "cv_roc_auc": 0.78589671398242,
+      "roc_auc": 0.7819506501376939,
+      "precision": 0.46256983240223465,
+      "recall": 0.6239638281838734,
+      "f1": 0.5312800769971127
+    },
+    {
+      "name": "random_forest",
+      "cv_roc_auc": 0.7852778139016593,
+      "roc_auc": 0.777991495340079,
+      "precision": 0.4685516445470283,
+      "recall": 0.611906556141673,
+      "f1": 0.530718954248366
+    },
+    {
+      "name": "logreg_gridsearch",
+      "cv_roc_auc": 0.7602955694947852,
+      "roc_auc": 0.7472197947741608,
+      "precision": 0.4392523364485981,
+      "recall": 0.6021100226073851,
+      "f1": 0.5079465988556897
+    },
+    {
+      "name": "logreg_balanced",
+      "cv_roc_auc": 0.7602620709061756,
+      "roc_auc": 0.7472001207533344,
+      "precision": 0.4394939493949395,
+      "recall": 0.6021100226073851,
+      "f1": 0.5081081081081081
+    },
+    {
+      "name": "logreg_baseline",
+      "cv_roc_auc": 0.7588941526826521,
+      "roc_auc": 0.7447818288163448,
+      "precision": 0.6442622950819672,
+      "recall": 0.2961567445365486,
+      "f1": 0.40578213732576146
+    }
+  ],
+  "model_path": "models/model.joblib"
+}
