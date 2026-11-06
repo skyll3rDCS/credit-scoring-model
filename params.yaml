@@ -1,0 +1,19 @@
+data:
+  raw_filename: UCI_Credit_Card.csv
+
+prepare:
+  test_size: 0.2
+  random_state: 42
+
+train:
+  experiment_name: credit_default_pd
+  random_state: 42
+  cv_folds: 3
+  threshold: 0.5
+
+monitoring:
+  sample_size: 500
+  psi_bins: 10
+  psi_warn: 0.1
+  psi_alert: 0.25
+  api_url: http://127.0.0.1:8000
