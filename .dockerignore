@@ -1,0 +1,13 @@
+.venv
+.git
+.dvc
+mlruns
+mlartifacts
+data
+tests
+notebooks
+reports
+.pytest_cache
+**/__pycache__
+**/*.pyc
+storage

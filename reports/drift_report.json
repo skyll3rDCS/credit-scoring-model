@@ -1,0 +1,35 @@
+{
+  "sample_size": 500,
+  "inject_drift": false,
+  "scored_by": "api",
+  "api_url": "http://127.0.0.1:8000",
+  "reference_rows": 24000,
+  "reference_default_rate": 0.22120833333333334,
+  "score_psi": {
+    "psi": 0.013802168349675051,
+    "band": "stable"
+  },
+  "feature_psi": {
+    "LIMIT_BAL": {
+      "psi": 0.013298047117208804,
+      "band": "stable"
+    },
+    "AGE": {
+      "psi": 0.020492495186794864,
+      "band": "stable"
+    },
+    "utilization": {
+      "psi": 0.018223293871102473,
+      "band": "stable"
+    },
+    "n_late_payments": {
+      "psi": 0.002116097991716665,
+      "band": "stable"
+    },
+    "pay_status_mean": {
+      "psi": 0.013594217570910047,
+      "band": "stable"
+    }
+  },
+  "mean_predicted_probability": 0.22792155317428567
+}
