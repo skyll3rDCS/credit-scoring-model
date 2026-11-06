@@ -1,0 +1,110 @@
+schema: '2.0'
+stages:
+  download:
+    cmd: PYTHONPATH=src python -m credit_default.data.load
+    deps:
+    - path: params.yaml
+      hash: md5
+      md5: 9078da13bb5f868edb64844a3a1e20d4
+      size: 297
+    - path: src/credit_default/config.py
+      hash: md5
+      md5: 8bebc6580578d2ed214b0483d28e6991
+      size: 516
+    - path: src/credit_default/data/load.py
+      hash: md5
+      md5: 6e949016d495ad9d22bdd8705badf861
+      size: 3058
+    outs:
+    - path: data/raw/UCI_Credit_Card.csv
+      hash: md5
+      md5: b4bf11c60a1b7b3298a1bb20d7f5ae05
+      size: 2867208
+  prepare:
+    cmd: PYTHONPATH=src python -m credit_default.data.prepare
+    deps:
+    - path: data/raw/UCI_Credit_Card.csv
+      hash: md5
+      md5: b4bf11c60a1b7b3298a1bb20d7f5ae05
+      size: 2867208
+    - path: params.yaml
+      hash: md5
+      md5: 9078da13bb5f868edb64844a3a1e20d4
+      size: 297
+    - path: src/credit_default/config.py
+      hash: md5
+      md5: 8bebc6580578d2ed214b0483d28e6991
+      size: 516
+    - path: src/credit_default/data/features.py
+      hash: md5
+      md5: 7e0351d9c91e8fac7db8de1dd24093cd
+      size: 4617
+    - path: src/credit_default/data/load.py
+      hash: md5
+      md5: 6e949016d495ad9d22bdd8705badf861
+      size: 3058
+    - path: src/credit_default/data/prepare.py
+      hash: md5
+      md5: e94bc440bfa447cd37007a1c6b1bf0a4
+      size: 2175
+    - path: src/credit_default/validation/suite.py
+      hash: md5
+      md5: 6cadfb8b252c5f35d53d3e48b9b0816c
+      size: 5152
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: dca68554d3f6f38f8e6fb202ef8627ec
+      size: 1137849
+    - path: data/processed/train.csv
+      hash: md5
+      md5: ae4760dbdf07e6fd77d5abdf5f50b122
+      size: 4553962
+  train:
+    cmd: PYTHONPATH=src python -m credit_default.models.train
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: dca68554d3f6f38f8e6fb202ef8627ec
+      size: 1137849
+    - path: data/processed/train.csv
+      hash: md5
+      md5: ae4760dbdf07e6fd77d5abdf5f50b122
+      size: 4553962
+    - path: params.yaml
+      hash: md5
+      md5: 9078da13bb5f868edb64844a3a1e20d4
+      size: 297
+    - path: src/credit_default/config.py
+      hash: md5
+      md5: 8bebc6580578d2ed214b0483d28e6991
+      size: 516
+    - path: src/credit_default/data/features.py
+      hash: md5
+      md5: 7e0351d9c91e8fac7db8de1dd24093cd
+      size: 4617
+    - path: src/credit_default/models/evaluate.py
+      hash: md5
+      md5: 9f00ac4df0ed3402c794ad05ca93f22c
+      size: 3186
+    - path: src/credit_default/models/pipeline.py
+      hash: md5
+      md5: a1d9c6fdea19f9b854d372a3763ae405
+      size: 1191
+    - path: src/credit_default/models/train.py
+      hash: md5
+      md5: f504f244ef1710cdbd6c4bf48172a30e
+      size: 13796
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: f2df717bb659642f9e743cbfa82cefaf
+      size: 149918
+    - path: reports/experiments.csv
+      hash: md5
+      md5: 245866bfc6ccecea1e7ddab75751b84b
+      size: 716
+    - path: reports/metrics.json
+      hash: md5
+      md5: c8dac817b2444a8b68e50604347ed5a6
+      size: 1947

@@ -1,0 +1,46 @@
+stages:
+  download:
+    cmd: PYTHONPATH=src python -m credit_default.data.load
+    deps:
+      - src/credit_default/data/load.py
+      - src/credit_default/config.py
+      - params.yaml
+    outs:
+      - data/raw/UCI_Credit_Card.csv
+
+  prepare:
+    cmd: PYTHONPATH=src python -m credit_default.data.prepare
+    deps:
+      - src/credit_default/data/prepare.py
+      - src/credit_default/data/features.py
+      - src/credit_default/data/load.py
+      - src/credit_default/validation/suite.py
+      - src/credit_default/config.py
+      - data/raw/UCI_Credit_Card.csv
+      - params.yaml
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train:
+    cmd: PYTHONPATH=src python -m credit_default.models.train
+    deps:
+      - src/credit_default/models/train.py
+      - src/credit_default/models/pipeline.py
+      - src/credit_default/models/evaluate.py
+      - src/credit_default/data/features.py
+      - src/credit_default/config.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - params.yaml
+    outs:
+      - models/model.joblib
+    metrics:
+      - reports/metrics.json:
+          cache: false
+    plots:
+      - reports/experiments.csv:
+          cache: false
+          x: name
+          y: roc_auc
+          title: Test ROC-AUC by experiment
